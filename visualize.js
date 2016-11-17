@@ -1,4 +1,5 @@
-var points = [[0,5],[1,9],[2,7],[3,5],[4,3],[6,4],[7,2],[8,3],[9,2]];
+var linePoints = [[0,5],[1,9],[2,7],[3,5],[4,3],[6,4],[7,2],[8,3],[9,2]];
+var sinePoints = [0,1,2,3,4,5,6,7,8,9];
 const WIDTH = 700;
 var HEIGHT = 600;
 const MARGIN = 30;
@@ -25,7 +26,7 @@ var displayGraph = function functionName() {
 }
 
 
-var drawLine = function (lines, group, className) {
+var drawLine = function (points,lines, group, className) {
   group.append('h1').text('Anusree');
   group.append('path')
     .datum(points)
@@ -34,19 +35,19 @@ var drawLine = function (lines, group, className) {
     .attr('stroke-width','2px');
 }
 
-var drawCircles = function (group, yValue) {
-  group.selectAll('circle')
-    .data(points,function(d){return d;})
-    .enter().append('circle')
-    .attr('r', 4)
-    .attr('cx', function(q){return xScale(q[0]/10)})
-    .attr('cy', function(q){return yScale(yValue/10)})
-    .attr('fill', 'white')
-    .attr('stroke-width', '1px')
-    .attr('stroke','steelblue');
-}
-
-
+// var drawCircles = function (group, yValue) {
+//   group.selectAll('circle')
+//     .data(linePoints,function(d){return d;})
+//     .enter().append('circle')
+//     .attr('r', 4)
+//     .attr('cx', function(q){return xScale(q[0]/10)})
+//     .attr('cy', function(q){return yScale(yValue/10)})
+//     .attr('fill', 'white')
+//     .attr('stroke-width', '1px')
+//     .attr('stroke','steelblue');
+// }
+//
+//
 
 
 
@@ -90,10 +91,10 @@ var display = function (interpolate) {
 		.y(function(q){return yScale(q[1]/10)})
     .curve(interpolate.d3Curve);
 
-  drawLine(line, lineGroup, 'simpleLine')
+  drawLine(linePoints, line, lineGroup, 'simpleLine')
 
 	lineGroup.selectAll('circle')
-    .data(points,function(d){return d;})
+    .data(linePoints,function(d){return d;})
 		.enter().append('circle')
 		.attr('r', 4)
     .attr('cx', function(q){return xScale(q[0]/10)})
@@ -106,19 +107,19 @@ var display = function (interpolate) {
     .attr('transform',  translate(MARGIN, MARGIN));
 
   var sineLine = d3.line()
-		.x(function(q){return xScale(q[0]/10)})
-		.y(function(q){return yScale(Math.sin(q[0])/10+0.5)})
+		.x(function(q){return xScale(q/10)})
+		.y(function(q){return yScale(Math.sin(q)/10+0.5)})
     .curve(interpolate.d3Curve);
 
-  drawLine(sineLine, sineLineGroup, 'sineLine');
+  drawLine(sinePoints,sineLine, sineLineGroup, 'sineLine');
   // drawCircles(sineLineGroup,)
 
   sineLineGroup.selectAll('circle')
-    .data(points,function(d){return d;})
+    .data(sinePoints,function(d){return d;})
     .enter().append('circle')
     .attr('r', 4)
-    .attr('cx', function(q){return xScale(q[0]/10)})
-    .attr('cy', function(q){return yScale(Math.sin(q[0])/10+0.5)})
+    .attr('cx', function(q){return xScale(q/10)})
+    .attr('cy', function(q){return yScale(Math.sin(q)/10+0.5)})
     .attr('fill', 'white')
     .attr('stroke-width', '1px')
     .attr('stroke','steelblue');
