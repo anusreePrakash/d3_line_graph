@@ -1,0 +1,12 @@
+.graph{
+	stroke: steelblue;
+	fill:none;
+}
+
+.container {
+  width: 800px;
+  height:auto;
+}
+
+
+{"d3Curve":d3.curveCatmullRom,"curveTitle":"curveCatmullRom"}
