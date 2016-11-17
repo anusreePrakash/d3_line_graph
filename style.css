@@ -2,3 +2,22 @@
 	stroke: steelblue;
 	fill:none;
 }
+
+.simpleLine{
+  stroke: darkred;
+	fill:none;
+}
+
+.sineLine{
+  stroke: darkblue;
+	fill:none;
+}
+
+
+.container {
+  width: 800px;
+  height:auto;
+}
+
+
+{"d3Curve":d3.curveCatmullRom,"curveTitle":"curveCatmullRom"}
