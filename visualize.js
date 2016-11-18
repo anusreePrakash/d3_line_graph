@@ -112,7 +112,6 @@ var display = function (interpolate) {
     .curve(interpolate.d3Curve);
 
   drawLine(sinePoints,sineLine, sineLineGroup, 'sineLine');
-  // drawCircles(sineLineGroup,)
 
   sineLineGroup.selectAll('circle')
     .data(sinePoints,function(d){return d;})
@@ -124,7 +123,6 @@ var display = function (interpolate) {
     .attr('stroke-width', '1px')
     .attr('stroke','steelblue');
 
-    // HEIGHT = HEIGHT + HEIGHT;
 
 }
 
